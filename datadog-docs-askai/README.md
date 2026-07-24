@@ -13,7 +13,7 @@ Open this link. Tampermonkey prompts you to install:
 Create a bookmark named `Datadog Ask AI` with this URL:
 
 ```text
-javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;var w=window.open('https://docs.datadoghq.com/');if(w){w.name='DDASK:'+encodeURIComponent(q);}})();
+javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;var e=encodeURIComponent(q),w=window.open('about:blank');if(!w)return;w.name='DDASK:'+e;w.location.replace('https://docs.datadoghq.com/#ddask='+e);})();
 ```
 
 ## How to use

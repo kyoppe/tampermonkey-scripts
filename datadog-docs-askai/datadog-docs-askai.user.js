@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      2.2.0
+// @version      2.3.0
 // @description  Companion for the Datadog Docs Ask AI bookmarklet
 // @match        https://docs.datadoghq.com/*
-// @run-at       document-idle
+// @run-at       document-start
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js
 // @downloadURL  https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js
@@ -16,7 +16,7 @@
   const WINDOW_NAME_PREFIX = 'DDASK:';
   const HASH_PREFIX = '#ddask=';
   const POLL_INTERVAL_MS = 150;
-  const TIMEOUT_MS = 10000;
+  const TIMEOUT_MS = 15000;
 
   function readPendingQuestion() {
     if (window.name && window.name.startsWith(WINDOW_NAME_PREFIX)) {

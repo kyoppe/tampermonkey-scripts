@@ -18,20 +18,22 @@ To update: Tampermonkey → **Check for userscript updates** (bump `@version` in
 
 ### Datadog Docs Ask AI
 
-Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** with a prefilled question in one step when used with the bookmarklet below.
+Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** with a prefilled question from **any page**.
 
-**Bookmarklet** (create a bookmark, set URL to this one-liner):
+**How to use**
+
+1. Click the **Tampermonkey** icon in the toolbar.
+2. Choose **Ask Datadog Docs AI...**
+3. Enter your question.
+4. The browser opens Docs (if needed) and the Ask AI panel starts with your question.
+
+If you are already on `docs.datadoghq.com`, Ask AI opens on the current page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
+
+**Optional bookmarklet** (same flow without opening the Tampermonkey menu):
 
 ```text
-javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;if(/\.datadoghq\.com$/.test(location.hostname)&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+encodeURIComponent(q);location.href='https://docs.datadoghq.com/';})();
+javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;if(location.hostname==='docs.datadoghq.com'&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+encodeURIComponent(q);location.href='https://docs.datadoghq.com/';})();
 ```
-
-**Flow**
-
-1. Click the bookmarklet anywhere → enter a question.
-2. If you are not on `docs.datadoghq.com`, the browser navigates there; the userscript reads `window.name` and calls `askDocsAI()`.
-3. If you are already on Docs, `askDocsAI()` runs immediately.
-4. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
 ## Adding a script
 

@@ -1,14 +1,12 @@
 # LOOKUP: Datadog Docs Ask AI
 
-Quick reference for import URL and bookmarklet.
+Quick reference for install link and bookmarklet.
 
-## Import userscript (once per browser)
+## Install userscript (once per browser)
 
-Tampermonkey → **Dashboard** → **Utilities** → **Import from URL**. Paste:
+Open this link. Tampermonkey prompts you to install the script:
 
-```text
-https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
-```
+[datadog-docs-askai.user.js](https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js)
 
 ## Bookmarklet
 
@@ -30,4 +28,4 @@ Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
 ## Update userscript
 
-Tampermonkey → **Check for userscript updates** (or **Import from URL** again with the URL above).
+Tampermonkey → **Check for userscript updates**, or open the [install link](https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js) again.

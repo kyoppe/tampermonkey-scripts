@@ -26,16 +26,30 @@ Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** with a prefilled qu
 https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
 ```
 
-#### How to use (Tampermonkey menu)
+#### How to use
 
-No bookmarklet required. Works from any site.
+Works from any site. **Recommended: keyboard shortcut.**
 
-1. Click the **Tampermonkey** icon in the toolbar.
-2. Choose **Ask Datadog Docs AI...**
-3. Enter your question and confirm.
-4. The browser opens Docs (if needed) and the Ask AI panel starts with your question.
+**Keyboard shortcut (recommended)**
 
-If you are already on `docs.datadoghq.com`, Ask AI opens on the current page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
+```text
+Alt + Shift + A
+```
+
+Press on any page (not while typing in an input field). Enter your question, then Docs opens and Ask AI starts.
+
+**Tampermonkey popup**
+
+1. Click the **Tampermonkey** icon.
+2. Under **Datadog Docs Ask AI**, click **Ask Datadog Docs AI...**
+
+If you do not see the label, update to v1.2.0 or use the shortcut above.
+
+**Context menu**
+
+1. Right-click the page.
+2. Open **Tampermonkey**.
+3. Click **Ask Datadog Docs AI...**
 
 #### Optional: bookmarklet
 
@@ -46,6 +60,8 @@ javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return
 ```
 
 Requires the userscript to be installed (it handles the Docs page after navigation).
+
+If you are already on `docs.datadoghq.com`, Ask AI opens on the current page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
 ## Adding a script
 

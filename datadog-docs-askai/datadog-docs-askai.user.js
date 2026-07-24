@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      2.1.0
+// @version      2.2.0
 // @description  Companion for the Datadog Docs Ask AI bookmarklet
 // @match        https://docs.datadoghq.com/*
 // @run-at       document-idle

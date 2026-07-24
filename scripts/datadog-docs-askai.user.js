@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.3.0
-// @description  Ask Datadog Docs AI from any page (Alt+Shift+A)
+// @version      1.3.1
+// @description  Ask Datadog Docs AI from any page (Ctrl+Shift+A)
 // @match        *://*/*
 // @run-at       document-idle
 // @grant        none
@@ -78,7 +78,12 @@
     document.addEventListener(
       'keydown',
       (event) => {
-        if (!event.altKey || !event.shiftKey || event.key.toLowerCase() !== 'a') {
+        if (!event.shiftKey || event.code !== 'KeyA') {
+          return;
+        }
+
+        // Use Control (not Command on Mac) to avoid browser/OS shortcuts.
+        if (!event.ctrlKey) {
           return;
         }
 

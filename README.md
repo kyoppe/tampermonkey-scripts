@@ -12,49 +12,15 @@ To update: Tampermonkey → **Check for userscript updates** (bump `@version` in
 
 ## Scripts
 
-| Script | Install URL |
-|--------|-------------|
-| Datadog Docs Ask AI | `https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js` |
+| Script | Install URL | Quick reference |
+|--------|-------------|-----------------|
+| Datadog Docs Ask AI | `https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js` | [LOOKUP.md](./LOOKUP.md) |
 
 ### Datadog Docs Ask AI
 
-Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** with a prefilled question from **any page**.
+Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** via bookmarklet. The userscript is a companion: it runs on Docs after navigation and forwards the question to Ask AI.
 
-#### Install URL
-
-```text
-https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
-```
-
-#### How to use
-
-Works from any site.
-
-**Keyboard shortcut**
-
-Mac: **Control + Shift + D** (`⌃⇧D`). Use the **Control** key (`⌃`), not Command (`⌘`).
-
-Windows / Linux: **Ctrl + Shift + D**
-
-```text
-Ctrl + Shift + D
-```
-
-Click the page background first (not an input field), then press the shortcut. Enter your question, then Docs opens and Ask AI starts.
-
-After updating the script, reload the tab once.
-
-**Bookmarklet**
-
-Create a bookmark and set the URL to:
-
-```text
-javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;if(location.hostname==='docs.datadoghq.com'&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+encodeURIComponent(q);location.href='https://docs.datadoghq.com/';})();
-```
-
-Requires the userscript to be installed (it handles the Docs page after navigation).
-
-If you are already on `docs.datadoghq.com`, Ask AI opens on the current page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
+See **[LOOKUP.md](./LOOKUP.md)** for the bookmarklet and install URL.
 
 ## Adding a script
 
@@ -62,6 +28,7 @@ If you are already on `docs.datadoghq.com`, Ask AI opens on the current page. Qu
 2. Set `@updateURL` and `@downloadURL` to the raw GitHub URL for that file.
 3. Bump `@version` when you change behavior.
 4. Add a row to the table in this README.
+5. Add a `LOOKUP.md` section or file if the script needs a quick-reference entry.
 
 Template:
 

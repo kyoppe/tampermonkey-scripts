@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.2.0
+// @version      1.3.0
 // @description  Ask Datadog Docs AI from any page (Alt+Shift+A)
 // @match        *://*/*
 // @run-at       document-idle
-// @grant        GM_registerMenuCommand
-// @grant        GM.registerMenuCommand
+// @grant        none
 // @updateURL    https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
 // @downloadURL  https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
 // ==/UserScript==
@@ -75,18 +74,6 @@
     launchAskAi(trimmed);
   }
 
-  function registerMenuCommand() {
-    const label = 'Ask Datadog Docs AI...';
-    if (typeof GM_registerMenuCommand === 'function') {
-      GM_registerMenuCommand(label, promptAndLaunch);
-      return;
-    }
-
-    if (typeof GM !== 'undefined' && typeof GM.registerMenuCommand === 'function') {
-      GM.registerMenuCommand(label, promptAndLaunch);
-    }
-  }
-
   function bindShortcut() {
     document.addEventListener(
       'keydown',
@@ -115,6 +102,5 @@
     }
   }
 
-  registerMenuCommand();
   bindShortcut();
 })();

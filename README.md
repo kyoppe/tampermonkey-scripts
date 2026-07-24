@@ -28,9 +28,9 @@ https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datad
 
 #### How to use
 
-Works from any site. **Recommended: keyboard shortcut.**
+Works from any site.
 
-**Keyboard shortcut (recommended)**
+**Keyboard shortcut**
 
 ```text
 Alt + Shift + A
@@ -38,22 +38,9 @@ Alt + Shift + A
 
 Press on any page (not while typing in an input field). Enter your question, then Docs opens and Ask AI starts.
 
-**Tampermonkey popup**
+**Bookmarklet**
 
-1. Click the **Tampermonkey** icon.
-2. Under **Datadog Docs Ask AI**, click **Ask Datadog Docs AI...**
-
-If you do not see the label, update to v1.2.0 or use the shortcut above.
-
-**Context menu**
-
-1. Right-click the page.
-2. Open **Tampermonkey**.
-3. Click **Ask Datadog Docs AI...**
-
-#### Optional: bookmarklet
-
-Same flow without opening the Tampermonkey menu. Create a bookmark and set the URL to:
+Create a bookmark and set the URL to:
 
 ```text
 javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;if(location.hostname==='docs.datadoghq.com'&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+encodeURIComponent(q);location.href='https://docs.datadoghq.com/';})();

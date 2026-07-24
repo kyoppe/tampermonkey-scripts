@@ -32,8 +32,12 @@ Works from any site.
 
 **Keyboard shortcut**
 
+Mac: **Control + Shift + A** (`⌃⇧A`). Use the **Control** key, not Command (`⌘`).
+
+Windows / Linux: **Ctrl + Shift + A**
+
 ```text
-Alt + Shift + A
+Ctrl + Shift + A
 ```
 
 Press on any page (not while typing in an input field). Enter your question, then Docs opens and Ask AI starts.

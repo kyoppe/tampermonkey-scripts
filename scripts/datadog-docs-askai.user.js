@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.0.0
-// @description  Open Datadog Docs Ask AI with a prefilled question (use with the DDASK bookmarklet)
-// @match        https://docs.datadoghq.com/*
+// @version      1.1.0
+// @description  Ask Datadog Docs AI from any page via Tampermonkey menu
+// @match        *://*/*
 // @run-at       document-idle
-// @grant        none
+// @grant        GM_registerMenuCommand
 // @updateURL    https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
 // @downloadURL  https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
 // ==/UserScript==
@@ -13,6 +13,7 @@
 (function () {
   'use strict';
 
+  const DOCS_URL = 'https://docs.datadoghq.com/';
   const WINDOW_NAME_PREFIX = 'DDASK:';
   const HASH_PREFIX = '#ddask=';
   const POLL_INTERVAL_MS = 150;
@@ -39,7 +40,7 @@
 
     (function poll() {
       if (typeof window.askDocsAI === 'function') {
-        window.askDocsAI(question, { source: 'bookmarklet' });
+        window.askDocsAI(question, { source: 'tampermonkey' });
         return;
       }
 
@@ -49,8 +50,36 @@
     })();
   }
 
-  const question = readPendingQuestion();
-  if (question) {
-    openAskAi(question);
+  function launchAskAi(question) {
+    if (location.hostname === 'docs.datadoghq.com' && typeof window.askDocsAI === 'function') {
+      window.askDocsAI(question, { source: 'tampermonkey' });
+      return;
+    }
+
+    window.name = WINDOW_NAME_PREFIX + encodeURIComponent(question);
+    location.href = DOCS_URL;
   }
+
+  function promptAndLaunch() {
+    const question = prompt('Datadog Docs Ask AI:', '');
+    if (question == null) {
+      return;
+    }
+
+    const trimmed = question.trim();
+    if (!trimmed) {
+      return;
+    }
+
+    launchAskAi(trimmed);
+  }
+
+  if (location.hostname === 'docs.datadoghq.com') {
+    const pending = readPendingQuestion();
+    if (pending) {
+      openAskAi(pending);
+    }
+  }
+
+  GM_registerMenuCommand('Ask Datadog Docs AI...', promptAndLaunch);
 })();

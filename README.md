@@ -32,15 +32,17 @@ Works from any site.
 
 **Keyboard shortcut**
 
-Mac: **Control + Shift + A** (`⌃⇧A`). Use the **Control** key, not Command (`⌘`).
+Mac: **Control + Shift + D** (`⌃⇧D`). Use the **Control** key (`⌃`), not Command (`⌘`).
 
-Windows / Linux: **Ctrl + Shift + A**
+Windows / Linux: **Ctrl + Shift + D**
 
 ```text
-Ctrl + Shift + A
+Ctrl + Shift + D
 ```
 
-Press on any page (not while typing in an input field). Enter your question, then Docs opens and Ask AI starts.
+Click the page background first (not an input field), then press the shortcut. Enter your question, then Docs opens and Ask AI starts.
+
+After updating the script, reload the tab once.
 
 **Bookmarklet**
 

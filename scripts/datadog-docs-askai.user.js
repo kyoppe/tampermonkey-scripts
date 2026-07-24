@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.3.1
-// @description  Ask Datadog Docs AI from any page (Ctrl+Shift+A)
+// @version      1.3.2
+// @description  Ask Datadog Docs AI from any page (Ctrl+Shift+D)
 // @match        *://*/*
-// @run-at       document-idle
+// @run-at       document-start
+// @inject-into  page
+// @noframes
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
 // @downloadURL  https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
@@ -12,6 +14,11 @@
 
 (function () {
   'use strict';
+
+  if (window.__ddDocsAskAiInstalled) {
+    return;
+  }
+  window.__ddDocsAskAiInstalled = true;
 
   const DOCS_URL = 'https://docs.datadoghq.com/';
   const WINDOW_NAME_PREFIX = 'DDASK:';
@@ -74,33 +81,56 @@
     launchAskAi(trimmed);
   }
 
+  function isTypingContext(target) {
+    if (!target || !(target instanceof Element)) {
+      return false;
+    }
+
+    if (target.closest('input, textarea, select, [contenteditable=""], [contenteditable="true"]')) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function isShortcut(event) {
+    if (event.isComposing || event.repeat) {
+      return false;
+    }
+
+    // Control on Mac, Ctrl on Windows/Linux. Not Command.
+    if (!event.ctrlKey || event.metaKey) {
+      return false;
+    }
+
+    if (!event.shiftKey || event.altKey) {
+      return false;
+    }
+
+    return event.code === 'KeyD';
+  }
+
   function bindShortcut() {
-    document.addEventListener(
+    window.addEventListener(
       'keydown',
       (event) => {
-        if (!event.shiftKey || event.code !== 'KeyA') {
-          return;
-        }
-
-        // Use Control (not Command on Mac) to avoid browser/OS shortcuts.
-        if (!event.ctrlKey) {
-          return;
-        }
-
-        const target = event.target;
-        const tag = target && target.tagName;
-        if (tag === 'INPUT' || tag === 'TEXTAREA' || target?.isContentEditable) {
+        if (!isShortcut(event) || isTypingContext(event.target)) {
           return;
         }
 
         event.preventDefault();
+        event.stopPropagation();
         promptAndLaunch();
       },
       true
     );
   }
 
-  if (location.hostname === 'docs.datadoghq.com') {
+  function handlePendingQuestion() {
+    if (location.hostname !== 'docs.datadoghq.com') {
+      return;
+    }
+
     const pending = readPendingQuestion();
     if (pending) {
       openAskAi(pending);
@@ -108,4 +138,10 @@
   }
 
   bindShortcut();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handlePendingQuestion, { once: true });
+  } else {
+    handlePendingQuestion();
+  }
 })();

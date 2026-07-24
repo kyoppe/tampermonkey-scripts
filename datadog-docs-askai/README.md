@@ -1,6 +1,6 @@
 # Datadog Docs Ask AI
 
-Open [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** in a **new tab** from any page via bookmarklet. This userscript runs on Docs and forwards the question when the tab loads.
+Open [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from any page via bookmarklet. Navigates in the **same tab** (no pop-up permission needed). This userscript forwards the question when Docs loads.
 
 ## Install userscript
 
@@ -13,18 +13,16 @@ Open this link. Tampermonkey prompts you to install:
 Create a bookmark named `Datadog Ask AI` with this URL:
 
 ```text
-javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;var e=encodeURIComponent(q),w=window.open('about:blank');if(!w)return;w.name='DDASK:'+e;w.location.replace('https://docs.datadoghq.com/#ddask='+e);})();
+javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;var e=encodeURIComponent(q);if(location.hostname==='docs.datadoghq.com'&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+e;location.href='https://docs.datadoghq.com/#ddask='+e;})();
 ```
 
 ## How to use
 
 1. Click the bookmarklet on any page.
 2. Enter your question.
-3. Docs opens in a **new tab** and Ask AI starts. The current tab stays as-is.
+3. The **current tab** navigates to Docs and Ask AI starts.
 
-Questions with 10+ characters may auto-submit (Datadog Docs behavior).
-
-If nothing opens, allow pop-ups for the site you clicked from.
+If you are already on `docs.datadoghq.com`, Ask AI opens without leaving the page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
 ## Update
 

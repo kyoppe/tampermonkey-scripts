@@ -20,20 +20,32 @@ To update: Tampermonkey → **Check for userscript updates** (bump `@version` in
 
 Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** with a prefilled question from **any page**.
 
-**How to use**
+#### Install URL
+
+```text
+https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js
+```
+
+#### How to use (Tampermonkey menu)
+
+No bookmarklet required. Works from any site.
 
 1. Click the **Tampermonkey** icon in the toolbar.
 2. Choose **Ask Datadog Docs AI...**
-3. Enter your question.
+3. Enter your question and confirm.
 4. The browser opens Docs (if needed) and the Ask AI panel starts with your question.
 
 If you are already on `docs.datadoghq.com`, Ask AI opens on the current page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
-**Optional bookmarklet** (same flow without opening the Tampermonkey menu):
+#### Optional: bookmarklet
+
+Same flow without opening the Tampermonkey menu. Create a bookmark and set the URL to:
 
 ```text
 javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;if(location.hostname==='docs.datadoghq.com'&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+encodeURIComponent(q);location.href='https://docs.datadoghq.com/';})();
 ```
+
+Requires the userscript to be installed (it handles the Docs page after navigation).
 
 ## Adding a script
 

@@ -1,18 +1,18 @@
 # tampermonkey-scripts
 
-Shared [Tampermonkey](https://www.tampermonkey.net/) userscripts for the team. Install once from a raw GitHub URL; Tampermonkey checks `@updateURL` for updates.
+Shared [Tampermonkey](https://www.tampermonkey.net/) userscripts for the team. Import once from a raw GitHub URL; Tampermonkey checks `@updateURL` for updates.
 
-## Install a script
+## Import a script
 
-1. Open Tampermonkey → **Dashboard** → **Utilities** tab (or use the **+** icon → **Install from URL**).
-2. Paste the **Install URL** from the table below.
+1. Open Tampermonkey → **Dashboard** → **Utilities** → **Import from URL**.
+2. Paste the script URL from the table below.
 3. Confirm installation.
 
 To update: Tampermonkey → **Check for userscript updates** (bump `@version` in the repo when you change a script).
 
 ## Scripts
 
-| Script | Install URL | Quick reference |
+| Script | Import URL | Quick reference |
 |--------|-------------|-----------------|
 | Datadog Docs Ask AI | `https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/scripts/datadog-docs-askai.user.js` | [LOOKUP.md](./LOOKUP.md) |
 
@@ -20,7 +20,7 @@ To update: Tampermonkey → **Check for userscript updates** (bump `@version` in
 
 Opens [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** via bookmarklet. The userscript is a companion: it runs on Docs after navigation and forwards the question to Ask AI.
 
-See **[LOOKUP.md](./LOOKUP.md)** for the bookmarklet and install URL.
+See **[LOOKUP.md](./LOOKUP.md)** for the bookmarklet and import URL.
 
 ## Adding a script
 

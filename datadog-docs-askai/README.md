@@ -6,9 +6,18 @@ Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar,
 
 ## Install userscript
 
-Open this link. Tampermonkey prompts you to install:
+Chrome blocks one-click install from `raw.githubusercontent.com` (`Apps, extensions, and user scripts cannot be added from this website`). Use Tampermonkey **Import from URL** instead.
 
-[datadog-docs-askai.user.js](https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js)
+1. Open **Tampermonkey** → **Dashboard** → **Utilities**
+2. Under **Import from URL**, paste:
+
+```text
+https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js
+```
+
+3. Click **Install**
+
+**Alternative:** clone this repo and import `datadog-docs-askai/datadog-docs-askai.user.js` via **Utilities** → choose file.
 
 ## Address bar (recommended)
 
@@ -58,8 +67,9 @@ Does not work on `chrome://newtab` or other internal browser pages. Use the addr
 
 | Symptom | Likely cause |
 |---------|----------------|
-| Docs opens but Ask AI is empty | Userscript not installed or disabled. Reinstall from the link above. |
+| Docs opens but Ask AI is empty | Userscript not installed or disabled. Reinstall via Import from URL (see above). |
 | `#ddask=` does nothing | Same as above. The hash is only read by this userscript. |
+| Install link blocked in Chrome | Expected. Do not click the raw URL in the browser. Use Tampermonkey → Import from URL. |
 | No bookmarklet prompt | Some pages block `prompt()`. Use the address bar method. |
 | Question stays in the input | Usually an existing Ask AI thread. v2.5.0 starts a new chat and retries send. |
 | New tab + bookmarklet | Bookmarklets do not run on `chrome://newtab`. Use `dd` in the address bar. |
@@ -68,6 +78,6 @@ Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
 ## Update
 
-Tampermonkey → **Check for userscript updates**, or open the [install link](https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js) again.
+Tampermonkey → **Check for userscript updates**.
 
-If update check says **No update found**, reinstall from the install link above.
+If update check says **No update found**, reinstall with **Import from URL** (same URL as install above).

@@ -13,7 +13,7 @@ Open this link. Tampermonkey prompts you to install:
 Create a bookmark named `Datadog Ask AI` with this URL:
 
 ```text
-javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return;q=q.trim();if(!q)return;var e=encodeURIComponent(q);if(location.hostname==='docs.datadoghq.com'&&typeof window.askDocsAI==='function'){window.askDocsAI(q,{source:'bookmarklet'});return}window.name='DDASK:'+e;location.href='https://docs.datadoghq.com/#ddask='+e;})();
+javascript:(function(){var q;try{q=prompt('Datadog Docs Ask AI:','');}catch(e){alert('Could not open the prompt on this page. Try again or use a different tab.');return;}if(q==null)return;q=q.trim();if(!q)return;var e=encodeURIComponent(q),p='DDASK:'+e,h='#ddask='+e;try{sessionStorage.setItem('dd-docs-askai-pending',q);}catch(x){}window.name=p;if(location.hostname==='docs.datadoghq.com'){location.assign(location.pathname+location.search+h);}else{location.assign('https://docs.datadoghq.com/'+h);}})();
 ```
 
 ## How to use
@@ -22,7 +22,15 @@ javascript:(function(){var q=prompt('Datadog Docs Ask AI:','');if(q==null)return
 2. Enter your question.
 3. The **current tab** navigates to Docs and Ask AI starts.
 
-If you are already on `docs.datadoghq.com`, Ask AI opens without leaving the page. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
+If you are already on `docs.datadoghq.com`, the page reloads with your question. Questions with 10+ characters may auto-submit (Datadog Docs behavior).
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+|---------|----------------|
+| No prompt | Some pages block `prompt()`. Click the page background first, or try another tab. |
+| Docs opens but Ask AI is empty | Userscript not installed or disabled. Reinstall from the link above. |
+| Question stays in the input | Usually an existing Ask AI thread. v2.5.0 starts a new chat and retries send. |
 
 ## Update
 

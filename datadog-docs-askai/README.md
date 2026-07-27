@@ -6,16 +6,18 @@ Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar,
 
 ## Install userscript
 
-```text
-https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js
-```
+[datadog-docs-askai.user.js](https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js)
 
-If that does not work, try **Import from URL**:
+If that does not work:
+
+### Import from URL
 
 1. Tampermonkey → **Dashboard** → **Utilities** → **Import from URL**
 2. Paste the URL above and install
 
-If that still does not work, **manual copy**:
+If that still does not work:
+
+### Manual copy
 
 1. Open `datadog-docs-askai/datadog-docs-askai.user.js` and copy the entire file.
 2. Tampermonkey → **Dashboard** → **+** → paste → **Save** (Cmd+S on Mac).

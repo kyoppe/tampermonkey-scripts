@@ -1,6 +1,6 @@
 # Datadog Docs Ask AI
 
-Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar, a bookmarklet, or any page. Requires the Tampermonkey userscript below.
+Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar. Requires the Tampermonkey userscript below.
 
 `#ddask=` is a **custom hash handled by this userscript**. It is not a Datadog Docs feature.
 
@@ -23,8 +23,6 @@ If that still does not work:
 2. Tampermonkey → **Dashboard** → **+** → paste → **Save** (Cmd+S on Mac).
 
 ## Address bar
-
-Works on a **new tab**, no bookmarklet, no pop-up permission.
 
 ### One-time setup
 
@@ -68,20 +66,6 @@ javascript:(function(){var q;try{q=prompt('Datadog Docs Ask AI:','');}catch(e){a
 2. Enter your question.
 3. The current tab navigates to Docs and Ask AI starts.
 
-Does not work on `chrome://newtab`. Use the address bar method instead.
-
-## Troubleshooting
-
-| Symptom | Fix |
-|---------|-----|
-| Docs opens but Ask AI is empty | Userscript not installed. Reinstall (see Install). |
-| `#ddask=` does nothing | Same as above. |
-| *Invalid Userscript* on import | Try manual copy (see Install). |
-| No bookmarklet prompt | Use the address bar method. |
-| Question stays in the input | Start a new Ask AI chat on Docs, then retry. |
-
-Questions with 10+ characters may auto-submit (Datadog Docs behavior).
-
 ## Update
 
-Tampermonkey → **Check for userscript updates**. If nothing updates, reinstall using the Install steps above.
+Tampermonkey → **Check for userscript updates**.

@@ -6,21 +6,21 @@ Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar,
 
 ## Install userscript
 
-### Manual copy (recommended)
-
-1. Open `datadog-docs-askai/datadog-docs-askai.user.js` and copy the entire file.
-2. Tampermonkey → **Dashboard** → **+** → paste → **Save** (Cmd+S on Mac).
-
-### Import from URL
-
-1. Tampermonkey → **Dashboard** → **Utilities** → **Import from URL**
-2. Paste and install:
-
 ```text
 https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js
 ```
 
-## Address bar (recommended)
+If that does not work, try **Import from URL**:
+
+1. Tampermonkey → **Dashboard** → **Utilities** → **Import from URL**
+2. Paste the URL above and install
+
+If that still does not work, **manual copy**:
+
+1. Open `datadog-docs-askai/datadog-docs-askai.user.js` and copy the entire file.
+2. Tampermonkey → **Dashboard** → **+** → paste → **Save** (Cmd+S on Mac).
+
+## Address bar
 
 Works on a **new tab**, no bookmarklet, no pop-up permission.
 
@@ -72,9 +72,9 @@ Does not work on `chrome://newtab`. Use the address bar method instead.
 
 | Symptom | Fix |
 |---------|-----|
-| Docs opens but Ask AI is empty | Userscript not installed. Use manual copy above. |
+| Docs opens but Ask AI is empty | Userscript not installed. Reinstall (see Install). |
 | `#ddask=` does nothing | Same as above. |
-| *Invalid Userscript* on import | Use manual copy above. |
+| *Invalid Userscript* on import | Try manual copy (see Install). |
 | No bookmarklet prompt | Use the address bar method. |
 | Question stays in the input | Start a new Ask AI chat on Docs, then retry. |
 
@@ -82,4 +82,4 @@ Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 
 ## Update
 
-Tampermonkey → **Check for userscript updates**. If nothing updates, reinstall via manual copy or Import from URL.
+Tampermonkey → **Check for userscript updates**. If nothing updates, reinstall using the Install steps above.

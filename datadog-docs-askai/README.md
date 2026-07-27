@@ -12,8 +12,10 @@ Chrome blocks one-click install from `raw.githubusercontent.com` (`Apps, extensi
 2. Under **Import from URL**, paste:
 
 ```text
-https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js
+https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js
 ```
+
+GitHub raw (`raw.githubusercontent.com`) can lag behind `main` for several minutes. Use jsDelivr above if import fails.
 
 3. Click **Install**
 

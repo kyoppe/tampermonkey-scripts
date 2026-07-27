@@ -1,14 +1,13 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      2.5.2
+// @version      2.5.3
 // @description  Companion for the Datadog Docs Ask AI bookmarklet
 // @match        https://docs.datadoghq.com/*
 // @run-at       document-start
-// @inject-into  page
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js
-// @downloadURL  https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js
+// @updateURL    https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js
+// @downloadURL  https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js
 // ==/UserScript==
 
 (function () {

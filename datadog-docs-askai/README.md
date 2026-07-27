@@ -6,7 +6,7 @@ Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar,
 
 ## Install userscript
 
-[datadog-docs-askai.user.js](https://cdn.jsdelivr.net/gh/kyoppe/tampermonkey-scripts@main/datadog-docs-askai/datadog-docs-askai.user.js)
+[datadog-docs-askai.user.js](https://github.com/kyoppe/tampermonkey-scripts/raw/refs/heads/main/datadog-docs-askai/datadog-docs-askai.user.js)
 
 If that does not work:
 

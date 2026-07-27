@@ -48,7 +48,7 @@ ddask How do I install the Datadog Agent?
 
 Press **Enter**. Docs opens and Ask AI starts with your question.
 
-**New tab (Mac):** **Cmd+Enter** instead of Enter. Or **Cmd+click** a `#ddask=` link or bookmark.
+**New tab (Mac):** **Cmd+Enter** instead of Enter.
 
 You can also paste a full URL:
 

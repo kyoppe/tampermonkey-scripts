@@ -69,3 +69,5 @@ Questions with 10+ characters may auto-submit (Datadog Docs behavior).
 ## Update
 
 Tampermonkey → **Check for userscript updates**, or open the [install link](https://raw.githubusercontent.com/kyoppe/tampermonkey-scripts/main/datadog-docs-askai/datadog-docs-askai.user.js) again.
+
+Stuck on **2.4.0**? Older installs pointed at a moved file path (`scripts/...`, now 404). v2.5.1 restores that legacy URL for one more update cycle. If check still fails, reinstall from the install link above.

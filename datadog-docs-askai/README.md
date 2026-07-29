@@ -8,6 +8,11 @@ For Cursor and other MCP clients, see [datadog-docs-askai-mcp](https://github.co
 
 `#ddask=` is a **custom hash handled by this userscript**. It is not a Datadog Docs feature.
 
+## Install Tampermonkey
+
+1. Install [Tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) from the Chrome Web Store.
+2. Open the Tampermonkey menu → **Manage extension** and enable **Allow user scripts**.
+
 ## Install userscript
 
 [datadog-docs-askai.user.js](https://github.com/kyoppe/tampermonkey-scripts/raw/refs/heads/main/datadog-docs-askai/datadog-docs-askai.user.js)

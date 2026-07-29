@@ -1,12 +1,17 @@
 # Datadog Docs Ask AI
 
-**Languages:** [English](README.md) | [日本語](README.ja.md)
+**言語:** [英語](README.md) | [日本語](README.ja.md)
 
 [Datadog Docs](https://docs.datadoghq.com/) の **Ask AI** をアドレスバーから開く Tampermonkey ユーザースクリプトです。
 
 Cursor など MCP クライアント向けは [datadog-docs-askai-mcp](https://github.com/kyoppe/datadog-docs-askai-mcp) を参照してください。
 
 `#ddask=` は **このユーザースクリプト用のカスタム hash** です。Datadog Docs の公式機能ではありません。
+
+## Tampermonkey のインストール
+
+1. [Chrome ウェブストア](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) から Tampermonkey をインストールします。
+2. Tampermonkey のメニュー → **拡張機能を管理** から **ユーザー スクリプトを許可する** をオンにします。
 
 ## ユーザースクリプトのインストール
 
@@ -16,7 +21,7 @@ Cursor など MCP クライアント向けは [datadog-docs-askai-mcp](https://g
 
 ### URL からインポート
 
-1. Tampermonkey → **ダッシュボード** → **ユーティリティ** → **Import from URL**
+1. Tampermonkey → **ダッシュボード** → **ユーティリティ** → **URL からインストール**
 2. 上の URL を貼り付けてインストール
 
 それでもダメな場合:

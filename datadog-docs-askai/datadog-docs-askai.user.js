@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Datadog Docs Ask AI
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      2.6.0
+// @version      2.6.2
 // @description  Companion for the Datadog Docs Ask AI bookmarklet
 // @match        https://docs.datadoghq.com/*
 // @run-at       document-start
@@ -84,16 +84,29 @@
       document.querySelector('.conv-search-sidebar');
   }
 
-  function isSuccess(question) {
+  function isSuccess() {
     const sidebar = document.querySelector('.conv-search-sidebar.open');
     if (!sidebar) {
       return false;
     }
 
+    return !!document.querySelector('.conv-search-message-user');
+  }
+
+  function sendIfFilled(question) {
+    const hasUserMessage = document.querySelector('.conv-search-message-user');
+    if (hasUserMessage) {
+      return true;
+    }
+
     const input = document.querySelector('textarea.conv-search-input');
     const value = input?.value.trim() || '';
-    const hasUserMessage = document.querySelector('.conv-search-message-user');
-    return value === question.trim() || !!hasUserMessage;
+    if (value !== question.trim()) {
+      return false;
+    }
+
+    document.querySelector('.conv-search-send')?.click();
+    return true;
   }
 
   function startNewChatIfNeeded() {
@@ -137,9 +150,9 @@
     return true;
   }
 
-  function finishIfSuccessful(question, done) {
+  function finishIfSuccessful(done) {
     setTimeout(() => {
-      if (isSuccess(question)) {
+      if (isSuccess()) {
         clearPendingQuestion();
         done(true);
         return;
@@ -153,27 +166,25 @@
     window.askDocsAI(question, { source: 'bookmarklet' });
 
     setTimeout(() => {
-      if (isSuccess(question)) {
+      if (isSuccess()) {
         clearPendingQuestion();
         done(true);
         return;
       }
 
-      const input = document.querySelector('textarea.conv-search-input');
-      const value = input?.value.trim() || '';
-      const hasUserMessage = document.querySelector('.conv-search-message-user');
-
-      if (value === question.trim()) {
-        document.querySelector('.conv-search-send')?.click();
-        finishIfSuccessful(question, done);
+      if (sendIfFilled(question)) {
+        finishIfSuccessful(done);
         return;
       }
 
-      if (!hasUserMessage && !value) {
+      const input = document.querySelector('textarea.conv-search-input');
+      const value = input?.value.trim() || '';
+
+      if (!value) {
         openSidebarIfNeeded();
         setTimeout(() => {
           fillAndSend(question);
-          finishIfSuccessful(question, done);
+          finishIfSuccessful(done);
         }, 300);
         return;
       }
@@ -201,7 +212,7 @@
           openSidebarIfNeeded();
           setTimeout(() => {
             fillAndSend(question);
-            finishIfSuccessful(question, (finalSuccess) => {
+            finishIfSuccessful((finalSuccess) => {
               done();
             });
           }, 300);
@@ -217,7 +228,7 @@
       openSidebarIfNeeded();
       setTimeout(() => {
         fillAndSend(question);
-        finishIfSuccessful(question, () => {
+        finishIfSuccessful(() => {
           done();
         });
       }, 300);
@@ -240,10 +251,16 @@
     });
   }
 
+  function onPendingQuestionNavigation() {
+    persistPendingQuestion();
+    handlePendingQuestion();
+  }
+
   persistPendingQuestion();
-  handlePendingQuestion();
-  document.addEventListener('DOMContentLoaded', handlePendingQuestion, { once: true });
-  window.addEventListener('load', handlePendingQuestion, { once: true });
-  setTimeout(handlePendingQuestion, 500);
-  setTimeout(handlePendingQuestion, 1500);
+  onPendingQuestionNavigation();
+  window.addEventListener('hashchange', onPendingQuestionNavigation);
+  document.addEventListener('DOMContentLoaded', onPendingQuestionNavigation, { once: true });
+  window.addEventListener('load', onPendingQuestionNavigation, { once: true });
+  setTimeout(onPendingQuestionNavigation, 500);
+  setTimeout(onPendingQuestionNavigation, 1500);
 })();

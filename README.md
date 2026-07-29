@@ -4,7 +4,7 @@ Team Tampermonkey userscripts. One folder per script; see each folder's README.
 
 | Script | Docs |
 |--------|------|
-| Datadog Docs Ask AI | [datadog-docs-askai](./datadog-docs-askai/) |
+| Datadog Docs Ask AI | [datadog-docs-askai](./datadog-docs-askai/) ([日本語](./datadog-docs-askai/README.ja.md)) |
 
 ## License
 

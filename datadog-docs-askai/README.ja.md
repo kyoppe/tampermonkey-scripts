@@ -1,6 +1,6 @@
 # Datadog Docs Ask AI
 
-**言語:** [英語](README.md) | [日本語](README.ja.md)
+**Languages:** [English](README.md) | [日本語](README.ja.md)
 
 [Datadog Docs](https://docs.datadoghq.com/) の **Ask AI** をアドレスバーから開く Tampermonkey ユーザースクリプトです。
 

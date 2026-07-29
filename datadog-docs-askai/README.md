@@ -1,6 +1,10 @@
 # Datadog Docs Ask AI
 
+**Languages:** [English](README.md) | [日本語](README.ja.md)
+
 Ask [Datadog Docs](https://docs.datadoghq.com/) **Ask AI** from the address bar. Requires the Tampermonkey userscript below.
+
+For Cursor and other MCP clients, see [datadog-docs-askai-mcp](https://github.com/kyoppe/datadog-docs-askai-mcp).
 
 `#ddask=` is a **custom hash handled by this userscript**. It is not a Datadog Docs feature.
 
@@ -45,6 +49,8 @@ ddask How do I install the Datadog Agent?
 ```
 
 Press **Enter**. Docs opens and Ask AI starts with your question.
+
+Works on a **new tab** or when you are **already on Docs** (same tab).
 
 **New tab (Mac):** **Cmd+Enter** instead of Enter.
 

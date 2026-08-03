@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Booklog Review to X (legacy format)
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.2.1
+// @version      1.2.2
 // @description  Replace Booklog review-page X buttons with legacy auto-post tweet text
 // @match        https://booklog.jp/users/*
 // @grant        none
@@ -13,6 +13,7 @@
   'use strict';
 
   const MAX_WEIGHT = 280;
+  const WEIGHT_MARGIN = 2;
   const URL_WEIGHT = 23;
   const HASHTAG = '#booklog';
   const TITLE_MAX = 24;
@@ -98,6 +99,10 @@
     return title.slice(0, maxChars - 3) + '...';
   }
 
+  function sanitizeTweet(text) {
+    return text.replace(/[\s\u00A0\u200B-\u200D\uFEFF]+$/u, '');
+  }
+
   function buildTweetFromData({ review, title, author, rate, url }) {
     review = (review || '').trim();
     title = (title || '').trim();
@@ -117,7 +122,7 @@
     const tailWeight =
       textWeight(`』${author}${stars} `) + URL_WEIGHT + textWeight(` ${HASHTAG}`);
     const fixedWeight = textWeight(separator) + tailWeight;
-    let budget = MAX_WEIGHT - fixedWeight;
+    let budget = MAX_WEIGHT - WEIGHT_MARGIN - fixedWeight;
 
     if (budget < REVIEW_MIN_WEIGHT + 4) {
       budget = Math.max(4, budget);
@@ -143,7 +148,7 @@
     const reviewPart = takeByWeight(review, reviewAllowWeight).text.trimEnd();
     titlePart = titlePart.trimEnd();
 
-    return `${reviewPart}${separator}${titlePart}${tail}`.trimEnd();
+    return sanitizeTweet(`${reviewPart}${separator}${titlePart}${tail}`);
   }
 
   function getRating(root) {
@@ -187,6 +192,7 @@
   }
 
   function openTweet(text) {
+    text = sanitizeTweet(text || '');
     if (!text) {
       alert('Review or title not found.');
       return;

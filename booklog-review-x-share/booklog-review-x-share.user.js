@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Booklog Review to X (legacy format)
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.2.0
+// @version      1.2.1
 // @description  Replace Booklog review-page X buttons with legacy auto-post tweet text
 // @match        https://booklog.jp/users/*
 // @grant        none
@@ -99,6 +99,11 @@
   }
 
   function buildTweetFromData({ review, title, author, rate, url }) {
+    review = (review || '').trim();
+    title = (title || '').trim();
+    author = (author || '').trim();
+    url = (url || '').trim();
+
     if (!review && !title) {
       return null;
     }
@@ -135,9 +140,10 @@
 
     const titlePartWeight = textWeight(titlePart);
     const reviewAllowWeight = budget - titlePartWeight;
-    const reviewPart = takeByWeight(review, reviewAllowWeight).text;
+    const reviewPart = takeByWeight(review, reviewAllowWeight).text.trimEnd();
+    titlePart = titlePart.trimEnd();
 
-    return `${reviewPart}${separator}${titlePart}${tail}`;
+    return `${reviewPart}${separator}${titlePart}${tail}`.trimEnd();
   }
 
   function getRating(root) {

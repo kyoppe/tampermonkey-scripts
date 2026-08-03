@@ -14,7 +14,6 @@ Booklog removed its Twitter auto-post integration in 2026. This userscript resto
 - CJK characters count as **2**, ASCII (URL path, `#booklog`, digits) as **1**; URLs count as **23**.
 - Space for review and title is maximized after reserving URL, `#booklog`, star rating, and author.
 - Long titles are truncated inside `『...』`.
-- The page URL is used without query parameters.
 
 ## Install Tampermonkey
 

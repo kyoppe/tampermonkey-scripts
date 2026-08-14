@@ -42,11 +42,9 @@ Copy the link from Jira with right-click. Do not open it and copy from the addre
 
 Jira URL fields are limited to **255** characters. If the language URL is longer, the script copies it to the clipboard instead of writing the field.
 
-## Japanese display (current)
+## Language display
 
-The script can insert `typeform-lang` on all three Premium Enablement survey URLs (Pre-Session, End of Session, End of Engagement).
-
-As of 2026-08-14, choosing Japanese actually switches the Typeform UI only for **End of Session** (`nznkCjFE`). **Pre-Session** (`wvU8Rwam`) and **End of Engagement** (`lffJgqaM`) stay in English even with `typeform-lang=ja`. That is a Typeform translation gap on those forms, not a script bug. Internal TEM docs do not call this out.
+The script adds `typeform-lang` to all three survey URLs. End of Session switches the Typeform UI (Japanese and Korean checked; other languages not fully tested). Pre-Session and End of Engagement stay in English. Those two forms probably do not have translation files yet.
 
 ## Languages
 

@@ -29,7 +29,7 @@
     { code: 'es', name: 'Spanish' },
   ];
 
-  // All three get typeform-lang. Japanese UI currently works only on End of Session.
+  // All three get typeform-lang. End of Session has translations; the other two likely do not.
   const SURVEY_FIELDS = [
     { id: 'customfield_20194', name: 'Pre-Session Survey' },
     { id: 'customfield_19903', name: 'End of Session Survey' },

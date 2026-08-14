@@ -42,11 +42,9 @@ URL 本体はこれまでどおり Jira Automation が生成します。⚡ **Cr
 
 Jira の URL フィールドは **255** 文字制限です。言語付き URL がそれを超える場合は、フィールドへは書かずクリップボードへコピーします。
 
-## 日本語表示 (現状)
+## 言語表示
 
-スクリプトは 3 種類とも URL に `typeform-lang` を付けられます (Pre-Session / End of Session / End of Engagement)。
-
-2026-08-14 時点で、日本語を選んでも Typeform の画面が日本語になるのは **End of Session** (`nznkCjFE`) だけです。**Pre-Session** (`wvU8Rwam`) と **End of Engagement** (`lffJgqaM`) は `typeform-lang=ja` を付けても英語のままです。スクリプトの不具合ではなく、フォーム側の翻訳が効いていない状態です。社内ドキュメントにもこの差は書かれていません。
+3 種類とも URL に `typeform-lang` は付きます。End of Session は Typeform の画面が切り替わります (Japanese / Korean は確認済み。他言語は未確認)。Pre-Session と End of Engagement は英語のままです。この 2 つは翻訳ファイルがまだ無い可能性が高いです。
 
 ## 言語
 

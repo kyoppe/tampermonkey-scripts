@@ -8,7 +8,13 @@ test('intercepts the Spotify X button and builds a custom X intent URL', () => {
   const sourcePath = path.join(__dirname, 'spotify-creators-x-share.user.js');
   const source = fs.readFileSync(sourcePath, 'utf8');
   let clickHandler;
-  let opened;
+  const steps = [];
+  const opened = {
+    initialUrl: null,
+    target: null,
+    destination: null,
+    closed: false,
+  };
 
   class MockElement {
     constructor(textContent = '') {
@@ -52,12 +58,27 @@ test('intercepts the Spotify X button and builds a custom X intent URL', () => {
 
   const window = {
     prompt(message, defaultValue) {
+      steps.push('prompt');
       assert.equal(message, '投稿文の先頭に入れるコメントを入力してください。');
       assert.equal(defaultValue, '');
       return '佐渡に行ってきました';
     },
     open(url, target, features) {
-      opened = { url, target, features };
+      steps.push('open');
+      opened.initialUrl = url;
+      opened.target = target;
+      opened.features = features;
+      return {
+        location: {
+          set href(value) {
+            steps.push('navigate');
+            opened.destination = value;
+          },
+        },
+        close() {
+          opened.closed = true;
+        },
+      };
     },
   };
 
@@ -86,15 +107,18 @@ test('intercepts the Spotify X button and builds a custom X intent URL', () => {
 
   assert.equal(defaultPrevented, true);
   assert.equal(propagationStopped, true);
+  assert.deepEqual(steps, ['open', 'prompt', 'navigate']);
   assert.deepEqual(opened, {
-    url:
+    initialUrl: 'about:blank',
+    target: '_blank',
+    features: undefined,
+    destination:
       'https://x.com/intent/tweet?text=' +
       encodeURIComponent(
         '佐渡に行ってきました / 118 - 佐渡ゴールドトレイル\n' +
           '#なんキャス\n' +
           'https://open.spotify.com/episode/6fIas54LH1RzGKh8SWbJad?si=test'
       ),
-    target: '_blank',
-    features: 'noopener,noreferrer',
+    closed: false,
   });
 });

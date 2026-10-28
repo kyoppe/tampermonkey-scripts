@@ -44,26 +44,30 @@
     event.preventDefault();
     event.stopImmediatePropagation();
 
+    const popup = window.open('about:blank', '_blank');
+    if (!popup) {
+      alert('X投稿画面を開けませんでした。ブラウザのポップアップを許可してください。');
+      return;
+    }
+
     const dialog = button.closest('[role="dialog"]');
     const title = getEpisodeTitle();
     const url = dialog ? getSharedUrl(dialog) : '';
 
     if (!title || !url) {
+      popup.close();
       alert('エピソード名またはSpotify URLを取得できませんでした。');
       return;
     }
 
     const comment = window.prompt('投稿文の先頭に入れるコメントを入力してください。', '');
     if (comment === null) {
+      popup.close();
       return;
     }
 
     const tweetText = buildTweetText(comment.trim().replace(/\s*\n+\s*/g, ' '), title, url);
-    window.open(
-      `https://x.com/intent/tweet?text=${encodeURIComponent(tweetText)}`,
-      '_blank',
-      'noopener,noreferrer'
-    );
+    popup.location.href = `https://x.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
   }
 
   document.addEventListener(

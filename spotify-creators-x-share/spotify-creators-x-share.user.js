@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Spotify for Creators X Share (#なんキャス)
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @version      1.0.0
+// @version      1.0.1
 // @description  Open a custom X draft from the Spotify for Creators share dialog
 // @match        https://creators.spotify.com/pod/show/*/episode/*/details
 // @grant        none

@@ -10,6 +10,10 @@ Spotify for Creatorsのエピソードページにある共有ダイアログの
 {SpotifyエピソードURL}
 ```
 
+## 個人用について
+
+このリポジトリはPublicですが、このスクリプトは作者個人の運用に合わせたものです。`#なんキャス`、投稿形式、その他の初期設定は個人用であり、一般用途向けの設定ではありません。
+
 ## Tampermonkeyのインストール
 
 1. [Chrome ウェブストア](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)からTampermonkeyをインストールします。

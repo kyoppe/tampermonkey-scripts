@@ -1,5 +1,7 @@
 # Spotify for Creators X Share
 
+**Languages:** [English](README.md) | [日本語](README.ja.md)
+
 Create an X post draft from a Spotify for Creators episode page using a custom format.
 
 ## Post format

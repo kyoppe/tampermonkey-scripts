@@ -10,6 +10,10 @@ Create an X post draft from a Spotify for Creators episode page using a custom f
 {Spotify episode URL}
 ```
 
+## Personal use
+
+This repository is public, but this userscript is a personal tool for the author's own workflow. The `#なんキャス` hashtag, post format, and other defaults are personal settings and are not intended as general-purpose configuration.
+
 ## Install Tampermonkey
 
 1. Install [Tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) from the Chrome Web Store.

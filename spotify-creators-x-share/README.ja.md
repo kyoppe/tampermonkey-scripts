@@ -1,5 +1,7 @@
 # Spotify for Creators X Share
 
+**Languages:** [English](README.md) | [日本語](README.ja.md)
+
 Spotify for Creatorsのエピソードページにある共有ダイアログのXボタンから、指定した形式の投稿下書きを作成するTampermonkeyスクリプトです。
 
 ## 投稿形式

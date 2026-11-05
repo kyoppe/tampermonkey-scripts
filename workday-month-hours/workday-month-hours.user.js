@@ -2,7 +2,7 @@
 // @name         Workday Month Hours
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
 // @homepageURL  https://datadoghq.atlassian.net/wiki/x/FAAYugE
-// @version      1.2.3
+// @version      1.2.4
 // @description  Fill a month of Hours Worked 9:00-12:00 and 13:00-18:00, skipping weekends, holidays, and PTO
 // @match        https://wd5.myworkday.com/datadog/*
 // @run-at       document-idle
@@ -359,6 +359,7 @@
     if (!panel) return;
     const hidden = submitTimePanelVisible();
     panel.hidden = hidden;
+    panel.style.display = hidden ? 'none' : '';
     panel.setAttribute('aria-hidden', String(hidden));
   }
 

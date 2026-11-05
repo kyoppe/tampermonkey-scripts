@@ -71,6 +71,8 @@ assert.strictEqual(Plan.dayKey(newYear[1]), '2027-01-01');
 
 assert.strictEqual(Plan.timeKey('9:00 - 12:00'), '09:00-12:00');
 assert.strictEqual(Plan.normalizeClock('13:00'), '13:00');
+assert.strictEqual(Plan.hasSubmitTimeLabel('Submit Time'), true);
+assert.strictEqual(Plan.hasSubmitTimeLabel('Enter Time'), false);
 
 assert.strictEqual(on(2026, 10, 18, []).reason, 'weekend');
 assert.strictEqual(on(2026, 10, 31, [{ title: 'Time Period End', sub: '2026/10/01 - 2026/10/31' }]).reason, 'weekend');

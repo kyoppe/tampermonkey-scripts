@@ -2,7 +2,7 @@
 // @name         Workday Month Hours
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
 // @homepageURL  https://datadoghq.atlassian.net/wiki/x/FAAYugE
-// @version      1.2.2
+// @version      1.2.3
 // @description  Fill a month of Hours Worked 9:00-12:00 and 13:00-18:00, skipping weekends, holidays, and PTO
 // @match        https://wd5.myworkday.com/datadog/*
 // @run-at       document-idle
@@ -165,6 +165,10 @@
     return true;
   }
 
+  function hasSubmitTimeLabel(value) {
+    return /\bSubmit Time\b/i.test(String(value || ''));
+  }
+
   function presentBlocks(events) {
     const have = new Set();
     events.forEach((event) => {
@@ -244,6 +248,7 @@
     weekKeyForDate,
     weekRangeLabel,
     assignDates,
+    hasSubmitTimeLabel,
     classifyDay,
     groupFills,
   };
@@ -336,6 +341,25 @@
     if (!el) return false;
     const rect = el.getBoundingClientRect();
     return rect.width > 0 && rect.height > 0;
+  }
+
+  function submitTimePanelVisible() {
+    const containers = [...document.querySelectorAll(
+      '[role="dialog"], [role="complementary"], aside, [data-automation-id*="Panel"], [data-automation-id*="panel"]'
+    )];
+    if (containers.some((node) => shown(node) && hasSubmitTimeLabel(node.innerText || node.textContent))) {
+      return true;
+    }
+    return [...document.querySelectorAll('h1,h2,h3,h4,[role="heading"],button')]
+      .some((node) => shown(node) && hasSubmitTimeLabel(node.textContent));
+  }
+
+  function syncPanelVisibility() {
+    const panel = document.getElementById(PANEL_ID);
+    if (!panel) return;
+    const hidden = submitTimePanelVisible();
+    panel.hidden = hidden;
+    panel.setAttribute('aria-hidden', String(hidden));
   }
 
   function readDays() {
@@ -792,7 +816,7 @@
     panel.style.cssText = [
       'position:fixed',
       'right:16px',
-      'bottom:16px',
+      'bottom:96px',
       'z-index:1000',
       'width:340px',
       'max-height:50vh',
@@ -983,6 +1007,7 @@
   const watcher = setInterval(() => {
     if (onEnterTime()) {
       mount();
+      syncPanelVisibility();
       maybeResume();
     } else {
       document.getElementById(PANEL_ID)?.remove();

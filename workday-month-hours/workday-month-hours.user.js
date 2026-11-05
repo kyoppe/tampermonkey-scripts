@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Workday Month Hours
 // @namespace    https://github.com/kyoppe/tampermonkey-scripts
-// @homepageURL  https://datadoghq.atlassian.net/wiki/spaces/~626068380f5cf500697f35bb/pages/7417102356/Workday+Month+Hours+-
-// @version      1.2.1
+// @homepageURL  https://datadoghq.atlassian.net/wiki/x/FAAYugE
+// @version      1.2.2
 // @description  Fill a month of Hours Worked 9:00-12:00 and 13:00-18:00, skipping weekends, holidays, and PTO
 // @match        https://wd5.myworkday.com/datadog/*
 // @run-at       document-idle
